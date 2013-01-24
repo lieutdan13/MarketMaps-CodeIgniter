@@ -1,5 +1,7 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
 class MY_Controller extends CI_Controller {
+    protected $layout = 'layout';
     
     public function __construct() {
         parent::__construct();
@@ -9,6 +11,15 @@ class MY_Controller extends CI_Controller {
             }
             $this->load->model($this::MODEL);
         }
+    }
+
+    protected function render($view_data) {
+        if (is_string($view_data)) {
+            $view_data = array(
+                'content' => $view_data
+            );
+        }
+        $this->load->view($this->layout, $view_data);
     }
     
     public function get_class($options = array()) {
@@ -27,26 +38,26 @@ class MY_Controller extends CI_Controller {
 
     public function index() {
         $data[$this->get_class(array('plural'=>true, 'lower'=>true))] = $this->{$this::MODEL}->get_data();
-	$data['title'] = 'List ' . $this->get_class('plural');
 
-	$this->load->view('templates/header', $data);
-	$this->load->view($this->get_class('lower') . '/index', $data);
-	$this->load->view('templates/footer');
+        $content = $this->load->view($this->get_class('lower') . '/index', $data);
+        $this->render(array(
+            'content' => $content,
+            'pageTitle' => 'List ' . $this->get_class('plural')
+        ));
     }
 
     public function view($slug) {
         $data[$this->get_class('lower') . '_item'] = $this->{$this::MODEL}->get_data($slug);
 
-	if (empty($data[$this->get_class('lower') . '_item']))
-	{
-		show_404();
-	}
+        if (empty($data[$this->get_class('lower') . '_item'])) {
+            show_404();
+        }
 
-	$data['title'] = $data[$this->get_class('lower') . '_item']['Name'];
-
-	$this->load->view('templates/header', $data);
-	$this->load->view($this->get_class('lower') . '/view', $data);
-	$this->load->view('templates/footer');
+        $content = $this->load->view($this->get_class('lower') . '/view', $data);
+        $this->render(array(
+            'content' => $content,
+            'pageTitle' => $data[$this->get_class('lower') . '_item']['Name']
+        ));
     }
 }
 ?>
