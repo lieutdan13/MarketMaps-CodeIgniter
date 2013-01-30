@@ -11,8 +11,19 @@
         <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
+        <? foreach ($stylesheets as $stylesheet): ?>
+            <?php echo css($stylesheet)?>
+        <? endforeach; ?>
+        <? foreach ($javascripts as $javascript): ?>
+            <?php echo js($javascript)?>
+        <? endforeach; ?>
+
     </head>
     <body>
-        <?php echo $content?>
+        <div id="header">
+        </div>
+        <div id="content">
+<?php echo $content?>
+        </div>
     </body>
 </html>
