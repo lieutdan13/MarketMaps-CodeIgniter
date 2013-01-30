@@ -12,8 +12,29 @@ table th {
     padding: 2px 5px;
 }
 
+#body {
+    width: 1000px;
+    margin: 0 auto;
+}
+
 #header {
-    height: 60px;
+    margin-top: 10px;
+    height: 40px;
+    font-size: 16pt;
+    text-align: center;
+}
+
+#title {
+    margin: 10px 0;
+    height: 20px;
+    font-size: 12pt;
+    text-align: center;
+}
+
+#footer {
+    margin-top: 20px;
+    font-size: 8pt;
+    text-align: right;
 }
 
 #content {

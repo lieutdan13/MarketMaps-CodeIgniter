@@ -20,10 +20,13 @@
 
     </head>
     <body>
-        <div id="header">
-        </div>
-        <div id="content">
+        <div id="body">
+            <div id="header">Market Maps Administration Console</div>
+            <div id="title"><?php echo $pageTitle?></div>
+            <div id="content">
 <?php echo $content?>
+            </div>
+            <div id="footer">&copy; <?php echo date('Y')?> Market Maps, LLC. All rights reserved</div>
         </div>
     </body>
 </html>
