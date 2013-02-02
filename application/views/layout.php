@@ -26,7 +26,10 @@
             <div id="content">
 <?php echo $content?>
             </div>
-            <div id="footer">&copy; <?php echo date('Y')?> Market Maps, LLC. All rights reserved</div>
+            <div id="footer">
+                Page rendered in <strong>{elapsed_time}</strong> seconds<br/>
+                &copy; <?php echo date('Y')?> Market Maps, LLC. All rights reserved
+            </div>
         </div>
     </body>
 </html>
