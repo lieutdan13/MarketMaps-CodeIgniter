@@ -7,7 +7,7 @@ class Welcome extends MY_Controller {
         $content = $this->load->view('welcome_message', NULL, true);
         $this->render(array(
             'content' => $content,
-            'pageTitle' => 'Welcome to MarketMaps'
+            'pageTitle' => 'Welcome to MarktMaps'
         ));
     }
 }

@@ -37,10 +37,7 @@
 |
 */
 
-$autoload['packages'] = array(
-    APPPATH . 'third_party/asset-helper/',
-    APPPATH . 'third_party/Ion-Auth/'
-);
+$autoload['packages'] = array(APPPATH . 'third_party/asset-helper/');
 
 
 /*
@@ -55,7 +52,7 @@ $autoload['packages'] = array(
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('ion_auth');
+$autoload['libraries'] = array();
 
 
 /*
