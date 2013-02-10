@@ -19,7 +19,7 @@ class MY_Controller extends CI_Controller {
         }
     }
 
-    protected function render($view_data) {
+    protected function render($view_data, $render=false) {
         if (is_string($view_data)) {
             $view_data = array(
                 'content' => $view_data,
@@ -27,7 +27,7 @@ class MY_Controller extends CI_Controller {
         }
         $view_data['stylesheets'] = $this->get_stylesheets();
         $view_data['javascripts'] = $this->get_javascripts();
-        $this->load->view($this->layout, $view_data);
+        $this->load->view($this->layout, $view_data, $render);
     }
 
     protected function get_stylesheets() {
