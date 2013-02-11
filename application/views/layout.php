@@ -21,7 +21,9 @@
     </head>
     <body>
         <div id="body">
-            <div id="header">Market Maps Administration Console</div>
+            <div id="header">
+                <img src="/assets/images/marker.svg" id="logo" alt="Market Maps Logo" />
+            </div>
             <div id="title"><?php echo $pageTitle?></div>
             <div id="content">
 <?php echo $content?>

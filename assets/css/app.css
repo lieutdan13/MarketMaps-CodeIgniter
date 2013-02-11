@@ -18,10 +18,12 @@ table th {
 }
 
 #header {
-    margin-top: 10px;
-    height: 40px;
     font-size: 16pt;
-    text-align: center;
+    background-color: orangered;
+}
+
+#logo {
+    height: 60px;
 }
 
 #title {
