@@ -52,7 +52,7 @@ $autoload['packages'] = array(APPPATH . 'third_party/asset-helper/');
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array();
+$autoload['libraries'] = array('database', 'session');
 
 
 /*
