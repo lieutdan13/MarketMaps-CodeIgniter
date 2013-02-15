@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://venuemap.schaeferzone.net';
+$config['base_url']	= 'http://marketmaps.co';
 
 /*
 |--------------------------------------------------------------------------

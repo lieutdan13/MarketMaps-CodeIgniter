@@ -1,6 +1,7 @@
 body {
     margin: 0 auto;
     font-family: Geneva,Arial,Helvetica,sans-serif;
+    background: url('/assets/images/bg/paper_fibers.png');
 }
 
 table {
@@ -12,14 +13,23 @@ table th {
     padding: 2px 5px;
 }
 
-#body {
+#body_header {
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    height: 60px;
+    background-color: #666666;
+    opacity: 0.2;
+    filter:alpha(opacity=20); /* For IE8 and earlier */
+}
+
+#body_inner {
     width: 1000px;
     margin: 0 auto;
 }
 
 #header {
-    font-size: 16pt;
-    background-color: orangered;
+    font-size: 0;
 }
 
 #logo {
@@ -40,7 +50,7 @@ table th {
 }
 
 #content {
-    margin: auto;
+    margin: 5px auto auto;
     width: 1000px;
 }
 

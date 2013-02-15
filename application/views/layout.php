@@ -21,16 +21,18 @@
     </head>
     <body>
         <div id="body">
-            <div id="header">
-                <img src="/assets/images/marker.svg" id="logo" alt="Market Maps Logo" />
-            </div>
-            <div id="title"><?php echo $pageTitle?></div>
-            <div id="content">
-<?php echo $content?>
-            </div>
-            <div id="footer">
-                Page rendered in <strong>{elapsed_time}</strong> seconds<br/>
-                &copy; <?php echo date('Y')?> Market Maps, LLC. All rights reserved
+            <div id="body_header"></div>
+            <div id="body_inner">
+                <div id="header">
+                    <img src="/assets/images/marker.svg" id="logo" alt="Market Maps Logo" />
+                </div>
+                <div id="content">
+    <?php echo $content?>
+                </div>
+                <div id="footer">
+                    Page rendered in <strong>{elapsed_time}</strong> seconds<br/>
+                    &copy; <?php echo date('Y')?> Market Maps, LLC. All rights reserved
+                </div>
             </div>
         </div>
     </body>
