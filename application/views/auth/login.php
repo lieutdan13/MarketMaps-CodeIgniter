@@ -15,7 +15,7 @@
         <span for="remember" class="remember">Remember Me</span>
         <?php echo form_checkbox('remember', '1', FALSE, 'id="remember"');?>
     </div>
-    <?php echo form_submit('submit', 'Login', "class='input button orange wide'");?>
+    <?php echo form_submit(array('id' => 'submit', 'name' => 'submit'), 'Login', "class='input button orange wide'");?>
 
     <?php echo form_close();?>
 

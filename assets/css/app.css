@@ -205,3 +205,14 @@ body.login #header #auth_links {
     vertical-align: top;
     font-size: small;
 }
+
+#login #submit {
+    color: #333;
+    font-size: 12pt;
+    font-weight: bold;
+    text-shadow: none;
+    padding: .8em 2em .85em;
+    -webkit-border-radius: 20px; 
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
