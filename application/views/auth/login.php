@@ -1,28 +1,23 @@
-<h1>Login</h1>
-<p>Please login with your email/username and password below.</p>
+<div id="login">
+    <div class="header">
+        <span class="loginText">LOGIN HERE</span>
+        <span class="orText">&mdash;<span>OR</span>&mdash;</span>
+        <button class="button orange">Register</button>
+    </div>
 
-<div id="infoMessage"><?php echo $message;?></div>
+    <div id="infoMessage"><?php echo $message;?></div>
 
-<?php echo form_open("auth/login");?>
+    <?php echo form_open("auth/login");?>
 
-  <p>
-    <label for="identity">Email/Username:</label>
-    <?php echo form_input($identity);?>
-  </p>
+    <?php echo form_input($identity, '', "class='input'");?>
+    <?php echo form_input($password, '', "class='input'");?>
+    <div class="input">
+        <span for="remember" class="remember">Remember Me</span>
+        <?php echo form_checkbox('remember', '1', FALSE, 'id="remember"');?>
+    </div>
+    <?php echo form_submit('submit', 'Login', "class='input button orange wide'");?>
 
-  <p>
-    <label for="password">Password:</label>
-    <?php echo form_input($password);?>
-  </p>
+    <?php echo form_close();?>
 
-  <p>
-    <label for="remember">Remember Me:</label>
-    <?php echo form_checkbox('remember', '1', FALSE, 'id="remember"');?>
-  </p>
-
-
-  <p><?php echo form_submit('submit', 'Login');?></p>
-
-<?php echo form_close();?>
-
-<p><a href="forgot_password">Forgot your password?</a></p>
+    <div class="forgot"><a href="forgot_password" class="subtle">Forgot your password?</a></div>
+</div>

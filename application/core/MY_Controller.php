@@ -3,12 +3,16 @@
 class MY_Controller extends CI_Controller {
     protected $layout = 'layout';
     protected $stylesheets = array(
-        'app.css'
+        'app.css',
     );
     protected $javascripts = array(
-        'app.js'
+        '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js',
+        'app.js',
     );
     
+    private $public_page = true;
+    private $viewdata = array();
+
     public function __construct() {
         parent::__construct();
         if (get_class() != get_class($this)) {
@@ -17,17 +21,29 @@ class MY_Controller extends CI_Controller {
             }
             $this->load->model($this::MODEL);
         }
+        $this->user = $this->ion_auth->user()->row();
+        $this->viewdata['logged_in'] = $this->ion_auth->logged_in();
+        if (!$this->viewdata['logged_in']) {
+            if (!$this->public_page) {
+                redirect('auth/login');
+            }
+        } else {
+            $this->viewdata['user']['username'] = $this->user->username;
+        }
     }
 
-    protected function render($view_data, $render=false) {
+    protected function render($view_data = NULL, $render=false) {
         if (is_string($view_data)) {
-            $view_data = array(
-                'content' => $view_data,
-            );
+            $this->viewdata['content'] = $view_data;
+        } else if (is_array($view_data)) {
+            $this->viewdata = array_merge($this->viewdata, $view_data);
         }
-        $view_data['stylesheets'] = $this->get_stylesheets();
-        $view_data['javascripts'] = $this->get_javascripts();
-        $this->load->view($this->layout, $view_data, $render);
+        $this->viewdata['stylesheets'] = $this->get_stylesheets();
+        $this->viewdata['javascripts'] = $this->get_javascripts();
+        if (!isset($view_data['script_head'])) {
+            $this->viewdata['script_head'] = '';
+        }
+        $this->load->view($this->layout, $this->viewdata, $render);
     }
 
     protected function get_stylesheets() {

@@ -1,6 +1,9 @@
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,600,700');
+@import url('http://fonts.googleapis.com/css?family=Oswald:400,700,300');
+
 body {
     margin: 0 auto;
-    font-family: Geneva,Arial,Helvetica,sans-serif;
+    font-family: 'Open Sans',Arial,Helvetica,sans-serif;
     background: url('/assets/images/bg/paper_fibers.png');
 }
 
@@ -12,6 +15,19 @@ table td,
 table th {
     padding: 2px 5px;
 }
+
+input, textarea, select {
+    padding: 6px;
+    border-width: 1px;
+    font: inherit;
+}
+
+/* Hack to remove Safari's extra padding. */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    input, textarea, select { padding: 4px; }
+}
+
+.js label { position: absolute; }
 
 #body_header {
     width: 100%;
@@ -29,7 +45,19 @@ table th {
 }
 
 #header {
+    position: relative;
     font-size: 0;
+}
+
+#header #auth_links {
+    position: absolute;
+    top: 8px;
+    right: 0;
+    font-size: 10pt;
+}
+
+#header #auth_links .welcome {
+    margin-right: 6px;
 }
 
 #logo {
@@ -54,11 +82,126 @@ table th {
     width: 1000px;
 }
 
-.modelList {
+#infoMessage {
+    font-size: medium;
+    color: red;
+}
+
+.subtle {
+    font-size: smaller;
+}
+
+.v-top {
+    vertical-align: top;
+}
+
+.modelList,
+.wide {
     width: 100%;
     
 }
 
 .modelList td {
-    border: 1px solid #000000;
+    border: 1px solid #000;
+}
+
+.button {
+	display: inline-block;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 14px/100% Arial, Helvetica, sans-serif;
+	padding: .5em 2em .55em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: 15px; 
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.button:hover {
+	text-decoration: none;
+}
+.button:active {
+	position: relative;
+	top: 1px;
+}
+
+.orange {
+	color: #fef4e9;
+	border: solid 1px #da7c0c;
+	background: #f78d1d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+}
+.orange:hover {
+	background: #f47c20;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
+	background: -moz-linear-gradient(top,  #f88e11,  #f06015);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
+}
+.orange:active {
+	color: #fcd3a5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+	background: -moz-linear-gradient(top,  #f47a20,  #faa51a);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+}
+
+body.login #header #auth_links {
+    display: none;
+}
+
+#login {
+    width: 350px;
+    margin: 20px auto;
+}
+
+#login .header {
+    font-family: 'Oswald',Arial,Helvetica,sans-serif;
+    white-space: nowrap;
+    position: relative;
+}
+
+#login .header .loginText {
+    font-size: 18pt;
+}
+
+#login .header .orText {
+    margin-left: 40px;
+    font-weight: 300;
+    font-size: 16pt;
+    vertical-align: top;
+}
+
+#login .header .orText span {
+    font-weight: 300;
+    font-size: 8pt;
+    vertical-align: middle;
+}
+
+#login .header .button {
+    position: absolute;
+    top: 2px;
+    right: 0px;
+}
+
+#login input[type='text'],
+#login input[type='password'] {
+    display: block;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#login .input,
+#login .forgot {
+    margin-top: 15px;
+}
+
+#login .remember {
+    vertical-align: top;
+    font-size: small;
 }

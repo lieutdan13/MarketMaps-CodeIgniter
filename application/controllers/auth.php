@@ -7,7 +7,6 @@ class Auth extends MY_Controller {
 	{
 		parent::__construct();
 		$this->load->library('ion_auth');
-		$this->load->library('session');
 		$this->load->library('form_validation');
 		$this->load->helper('url');
 
@@ -55,6 +54,7 @@ class Auth extends MY_Controller {
 	function login()
 	{
 		$this->data['pageTitle'] = "Login";
+		$this->data['body_class'] = "login";
 
 		//validate form input
 		$this->form_validation->set_rules('identity', 'Identity', 'required');
@@ -91,10 +91,12 @@ class Auth extends MY_Controller {
 				'id' => 'identity',
 				'type' => 'text',
 				'value' => $this->form_validation->set_value('identity'),
+                                'placeholder' => 'Username',
 			);
 			$this->data['password'] = array('name' => 'password',
 				'id' => 'password',
 				'type' => 'password',
+                                'placeholder' => 'Password',
 			);
 
 			$this->_render_page('auth/login', $this->data);
@@ -764,16 +766,11 @@ class Auth extends MY_Controller {
 		}
 	}
 
-	function _render_page($view, $data=null, $render=false)
-	{
-
-		$this->viewdata = (empty($data)) ? $this->data: $data;
-
-		$view_html = $this->load->view($view, $this->viewdata, true);
-                
-                $view_html = $this->render($view_html, $render);
-
-		if (!$render) return $view_html;
-	}
+        function _render_page($view, $data=null, $render=false) {
+            $this->viewdata = (empty($data)) ? $this->data: $data;
+            $this->viewdata['content'] = $this->load->view($view, $this->viewdata, true);
+            $view_html = $this->render($this->viewdata, $render);
+            if (!$render) return $view_html;
+        }
 
 }
