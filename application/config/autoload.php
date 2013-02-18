@@ -37,7 +37,10 @@
 |
 */
 
-$autoload['packages'] = array(APPPATH . 'third_party/asset-helper/');
+$autoload['packages'] = array(
+    APPPATH . 'third_party/asset-helper/',
+    APPPATH.'third_party/ion_auth',
+);
 
 
 /*
@@ -64,7 +67,7 @@ $autoload['libraries'] = array('database', 'session', 'ion_auth');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'asset');
+$autoload['helper'] = array('url', 'form', 'asset');
 
 
 /*
