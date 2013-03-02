@@ -9,11 +9,13 @@ class MY_Controller extends CI_Controller {
         '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js',
         'app.js',
     );
+    public $public_methods = array();
     
-    private $public_page = true;
-    private $viewdata = array();
+    public $data = array();
+    private $user;
 
     public function __construct() {
+        global $RTR;
         parent::__construct();
         if (get_class() != get_class($this)) {
             if (!defined(get_class($this) . '::MODEL')) {
@@ -21,29 +23,36 @@ class MY_Controller extends CI_Controller {
             }
             $this->load->model($this::MODEL);
         }
-        $this->user = $this->ion_auth->user()->row();
-        $this->viewdata['logged_in'] = $this->ion_auth->logged_in();
-        if (!$this->viewdata['logged_in']) {
-            if (!$this->public_page) {
-                redirect('auth/login');
+
+        $logged_in = $this->ion_auth->logged_in();
+        if (!$logged_in) {
+            if (!in_array($RTR->method, $this->public_methods)) {
+                // send back to the login
+                redirect('login');
             }
-        } else {
-            $this->viewdata['user']['username'] = $this->user->username;
         }
+        // get the user object
+        $this->data['user'] = $this->ion_auth->user()->row();
+        $this->data['logged_in'] = $logged_in;
+        // put the user object in class wide property
+        $this->user = $this->data['user'];
+
+        // load $user in all displayed views automatically
+        $this->load->vars($this->data);
     }
 
     protected function render($view_data = NULL, $render=false) {
         if (is_string($view_data)) {
-            $this->viewdata['content'] = $view_data;
+            $this->data['content'] = $view_data;
         } else if (is_array($view_data)) {
-            $this->viewdata = array_merge($this->viewdata, $view_data);
+            $this->data = array_merge($this->data, $view_data);
         }
-        $this->viewdata['stylesheets'] = $this->get_stylesheets();
-        $this->viewdata['javascripts'] = $this->get_javascripts();
+        $this->data['stylesheets'] = $this->get_stylesheets();
+        $this->data['javascripts'] = $this->get_javascripts();
         if (!isset($view_data['script_head'])) {
-            $this->viewdata['script_head'] = '';
+            $this->data['script_head'] = '';
         }
-        $this->load->view($this->layout, $this->viewdata, $render);
+        $this->load->view($this->layout, $this->data, $render);
     }
 
     protected function get_stylesheets() {

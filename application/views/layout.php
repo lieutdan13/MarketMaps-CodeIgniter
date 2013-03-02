@@ -32,10 +32,10 @@
                     <img src="/assets/images/marker.svg" id="logo" alt="Market Maps Logo" />
                     <div id="auth_links">
                     <?php if ($logged_in) { ?>
-                         <span class="welcome">Welcome <?=$user['username']?>!</span>
-                         <a href="<?php echo base_url() . "auth/logout"?>">Logout</a>
+                         <span class="welcome">Welcome <?=$user->username?>!</span>
+                         <a href="<?php echo base_url() . "logout"?>">Logout</a>
                     <?php } else { ?>
-                         <a href="<?php echo base_url() . "auth/login"?>">Login</a>
+                         <a href="<?php echo base_url() . "login"?>">Login</a>
                     <?php } ?>
                     </div>
                 </div>

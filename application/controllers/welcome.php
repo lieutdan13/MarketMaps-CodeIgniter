@@ -4,12 +4,9 @@ class Welcome extends MY_Controller {
     const MODEL = '';
     
     public function index() {
-        $this->load->library('form_validation');
-        $content = $this->load->view('welcome_message', NULL, true);
-        $this->render(array(
-            'content' => $content,
-            'pageTitle' => 'Welcome to Market Maps'
-        ));
+        $this->data['content'] = $this->load->view('welcome_message', NULL, true);
+        $this->data['pageTitle'] = 'Welcome to Market Maps';
+        $this->render($this->data);
     }
 }
 
