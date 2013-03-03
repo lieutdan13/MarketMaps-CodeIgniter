@@ -72,7 +72,12 @@ $autoload['libraries'] = array(
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'form', 'asset');
+$autoload['helper'] = array(
+    'url',
+    'form',
+    'asset',
+    'debug'
+);
 
 
 /*
