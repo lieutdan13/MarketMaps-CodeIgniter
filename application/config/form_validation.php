@@ -27,17 +27,21 @@ $config = array(
         array(
             'field' => 'username',
             'label' => 'Username',
-            'rules' => 'trim|required|xss_clean|alpha_dash|min_length[5]|max_length[15]|strtolower|is_unique[users.username]'
+            'rules' => 'trim|required|xss_clean|alpha_dash|'.
+                       'min_length[5]|max_length[15]|strtolower|'.
+                       'no_reserves|is_unique[users.username]'
         ),
         array(
             'field' => 'email',
             'label' => 'Email',
-            'rules' => 'trim|required|xss_clean|valid_email|strtolower|is_unique[users.email]'
+            'rules' => 'trim|required|xss_clean|valid_email|strtolower|'.
+                       'is_unique[users.email]'
         ),
         array(
             'field' => 'password',
             'label' => 'Password',
-            'rules' => 'required|xss_clean|min_length[8]|max_length[20]|matches[passconf]'
+            'rules' => 'required|xss_clean|min_length[8]|max_length[20]|'.
+                       'matches[passconf]'
         ),
         array(
             'field' => 'passconf',
