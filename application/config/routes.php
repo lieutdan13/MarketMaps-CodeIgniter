@@ -43,6 +43,7 @@ $route['404_override'] = '';
 
 $route['login'] = 'user/login';
 $route['logout'] = 'user/logout';
+$route['register'] = 'user/register';
 
 $route['venue/(:any)'] = 'venue/view/$1';
 $route['venue'] = 'venue';

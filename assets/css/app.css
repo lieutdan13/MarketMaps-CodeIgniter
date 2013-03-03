@@ -154,42 +154,45 @@ body.login #header #auth_links {
     display: none;
 }
 
-#login {
+#login,
+#register {
     width: 350px;
     margin: 20px auto;
 }
 
-#login .header {
+#login .header,
+#register .header {
     font-family: 'Oswald',Arial,Helvetica,sans-serif;
     white-space: nowrap;
     position: relative;
 }
 
-#login .header .loginText {
+#login .header .loginText,
+#register .header .registerText {
     font-size: 18pt;
 }
 
-#login .header .orText {
+.header .orText {
     margin-left: 40px;
     font-weight: 300;
     font-size: 16pt;
-    vertical-align: top;
 }
 
-#login .header .orText span {
+.header .orText span {
     font-weight: 300;
     font-size: 8pt;
     vertical-align: middle;
 }
 
-#login .header .button {
+.header .button {
     position: absolute;
-    top: 2px;
     right: 0px;
 }
 
 #login input[type='text'],
-#login input[type='password'] {
+#login input[type='password'],
+#register input[type='text'],
+#register input[type='password'] {
     display: block;
     display: block;
     width: 100%;
@@ -197,7 +200,9 @@ body.login #header #auth_links {
 }
 
 #login .input,
-#login .forgot {
+#login .forgot,
+#register .input,
+#register .forgot {
     margin-top: 15px;
 }
 
@@ -206,7 +211,8 @@ body.login #header #auth_links {
     font-size: small;
 }
 
-#login #submit {
+#login #submit,
+#register #submit {
     color: #333;
     font-size: 12pt;
     font-weight: bold;

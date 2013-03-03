@@ -2,7 +2,7 @@
     <div class="header">
         <span class="loginText">LOGIN HERE</span>
         <span class="orText">&mdash;<span>OR</span>&mdash;</span>
-        <button class="button orange">Register</button>
+        <button class="button orange" id="registerBtn">Register</button>
     </div>
 
     <div id="infoMessage"><?php echo $message;?></div>
@@ -19,5 +19,5 @@
 
     <?php echo form_close();?>
 
-    <div class="forgot"><a href="forgot_password" class="subtle">Forgot your password?</a></div>
+    <?php /*<div class="forgot"><a href="forgot_password" class="subtle">Forgot your password?</a></div>*/?>
 </div>

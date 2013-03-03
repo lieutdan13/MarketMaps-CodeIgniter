@@ -3,7 +3,7 @@
 class User extends MY_Controller {
     const MODEL = 'Ion_auth_model';
     
-    public $public_methods = array('login');
+    public $public_methods = array('login', 'register', 'register_confirm');
     
     function __construct() {
         parent::__construct();
@@ -23,25 +23,19 @@ class User extends MY_Controller {
         $this->data['pageTitle'] = "Login";
         $this->data['body_class'] = "login";
 
-        //validate form input
-        $this->form_validation->set_rules('identity', 'Identity', 'required');
-        $this->form_validation->set_rules('password', 'Password', 'required');
-
-        if ($this->form_validation->run() == true) {
-            //check to see if the user is logging in
+        if ($this->form_validation->run('login') == true) {
             //check for "remember me"
             $remember = (bool) $this->input->post('remember');
 
             if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember)) {
                 //if the login is successful
-                //redirect them back to the home page
                 $this->session->set_flashdata('message', $this->ion_auth->messages());
                 redirect('user', 'refresh');
             } else {
                 //if the login was un-successful
                 //redirect them back to the login page
                 $this->session->set_flashdata('message', $this->ion_auth->errors());
-                redirect('/login', 'refresh'); //use redirects instead of loading views for compatibility with MY_Controller libraries
+                redirect('login', 'refresh'); //use redirects instead of loading views for compatibility with MY_Controller libraries
             }
         } else {
             //the user is not logging in so display the login page
@@ -52,7 +46,7 @@ class User extends MY_Controller {
                 'id' => 'identity',
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('identity'),
-                'placeholder' => 'Username',
+                'placeholder' => 'Email',
             );
             $this->data['password'] = array('name' => 'password',
                 'id' => 'password',
@@ -72,5 +66,82 @@ class User extends MY_Controller {
     
     public function view() {
         redirect('user/');
+    }
+
+    public function register() {
+        $this->data['pageTitle'] = "Register";
+        $this->data['body_class'] = "register";
+
+        $validated = $this->form_validation->run('register');
+        if ($validated) {
+            $username = strtolower($this->input->post('username'));
+            $email    = strtolower($this->input->post('email'));
+            $password = $this->input->post('password');
+
+            $additional_data = array(
+                'first_name' => $this->input->post('first_name'),
+                'last_name'  => $this->input->post('last_name'),
+                'company'    => $this->input->post('company'),
+            );
+        }
+        if ($validated == true && $this->ion_auth->register($username, $password, $email, $additional_data)) {
+            //check to see if we are creating the user
+            //redirect them back to the admin page
+            $this->session->set_flashdata('message', $this->ion_auth->messages());
+            redirect("user/register_confirm", 'refresh');
+        } else {
+            //the user is not regitering in so display the register page
+            $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+
+            $this->data['first_name'] = array('name' => 'first_name',
+                'id' => 'first_name',
+                'type' => 'text',
+                'value' => $this->form_validation->set_value('first_name'),
+                'placeholder' => 'First Name',
+            );
+            $this->data['last_name'] = array('name' => 'last_name',
+                'id' => 'last_name',
+                'type' => 'text',
+                'value' => $this->form_validation->set_value('last_name'),
+                'placeholder' => 'Last Name',
+            );
+            $this->data['company'] = array('name' => 'company',
+                'id' => 'company',
+                'type' => 'text',
+                'value' => $this->form_validation->set_value('company'),
+                'placeholder' => 'Company',
+            );
+            $this->data['email'] = array('name' => 'email',
+                'id' => 'email',
+                'type' => 'text',
+                'value' => $this->form_validation->set_value('email'),
+                'placeholder' => 'Email',
+            );
+            $this->data['username'] = array('name' => 'username',
+                'id' => 'username',
+                'type' => 'text',
+                'value' => $this->form_validation->set_value('username'),
+                'placeholder' => 'Username',
+            );
+            $this->data['password'] = array('name' => 'password',
+                'id' => 'password',
+                'type' => 'password',
+                'placeholder' => 'Password',
+            );
+            $this->data['passconf'] = array('name' => 'passconf',
+                'id' => 'passconf',
+                'type' => 'password',
+                'placeholder' => 'Confirm Password',
+            );
+            $this->data['content'] = $this->load->view('user/register', $this->data, true);
+            $this->render($this->data);
+        }
+    }
+
+    function register_confirm() {
+        $this->data['pageTitle'] = "Registeration Confirmation";
+        $this->data['body_class'] = "register_confirm";
+        $this->data['content'] = $this->load->view('user/register_confirm', $this->data, true);
+        $this->render($this->data);
     }
 }

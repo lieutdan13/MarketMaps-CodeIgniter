@@ -83,13 +83,13 @@ $config['max_rounds']     = 9;
  */
 $config['site_title']                 = "MarketMaps.co";       // Site Title, example.com
 $config['admin_email']                = "dan@schaeferzone.net"; // Admin Email, admin@example.com
-$config['default_group']              = 'members';           // Default group, use name
+$config['default_group']              = 'user';           // Default group, use name
 $config['admin_group']                = 'admin';             // Default administrators group, use name
 $config['identity']                   = 'email';             // A database column which is used to login with
 $config['min_password_length']        = 8;                   // Minimum Required Length of Password
 $config['max_password_length']        = 20;                  // Maximum Allowed Length of Password
-$config['email_activation']           = TRUE;               // Email Activation for registration
-$config['manual_activation']          = TRUE;               // Manual Activation for registration
+$config['email_activation']           = FALSE;               // Email Activation for registration
+$config['manual_activation']          = FALSE;               // Manual Activation for registration
 $config['remember_users']             = TRUE;                // Allow users to be remembered and enable auto-login
 $config['user_expire']                = 86500;               // How long to remember the user (seconds). Set to zero for no expiration
 $config['user_extend_on_login']       = FALSE;               // Extend the users cookies everytime they auto-login
@@ -157,7 +157,7 @@ $config['email_forgot_password_complete'] = 'new_password.tpl.php';
  | fbaa5e216d163a02ae630ab1a43372635dd374c0 with default salt.
  */
 $config['salt_length'] = 10;
-$config['store_salt']  = FALSE;
+$config['store_salt']  = TRUE;
 
 /*
  | -------------------------------------------------------------------------
