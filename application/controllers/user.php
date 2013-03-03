@@ -7,6 +7,9 @@ class User extends MY_Controller {
     
     function __construct() {
         parent::__construct();
+        $this->load->config('ion_auth', TRUE);
+        $this->min_pass_length = $this->config->item('min_password_length', 'ion_auth');
+        $this->max_pass_length = $this->config->item('max_password_length', 'ion_auth');
     }
 
     public function index() {
@@ -139,7 +142,7 @@ class User extends MY_Controller {
     }
 
     function register_confirm() {
-        $this->data['pageTitle'] = "Registeration Confirmation";
+        $this->data['pageTitle'] = "Registration Confirmation";
         $this->data['body_class'] = "register_confirm";
         $this->data['content'] = $this->load->view('user/register_confirm', $this->data, true);
         $this->render($this->data);

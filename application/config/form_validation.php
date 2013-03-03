@@ -40,8 +40,7 @@ $config = array(
         array(
             'field' => 'password',
             'label' => 'Password',
-            'rules' => 'required|xss_clean|min_length[8]|max_length[20]|'.
-                       'matches[passconf]'
+            'rules' => 'required|xss_clean|password_crit|matches[passconf]'
         ),
         array(
             'field' => 'passconf',

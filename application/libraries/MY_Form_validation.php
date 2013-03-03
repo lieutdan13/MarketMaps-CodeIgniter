@@ -16,5 +16,18 @@ class MY_Form_validation extends CI_Form_validation {
         }
         return TRUE;
     }
+
+    function password_crit($str) {
+        if (
+            !$this->regex_match($str, '/[a-z]/') ||
+            !$this->regex_match($str, '/[A-Z]/') ||
+            !$this->regex_match($str, '/[0-9]/') ||
+            mb_strlen($str) < $this->CI->min_pass_length ||
+            mb_strlen($str) > $this->CI->max_pass_length
+        ) {
+            return FALSE;
+        }
+        return TRUE;
+    }
 }
 ?>
