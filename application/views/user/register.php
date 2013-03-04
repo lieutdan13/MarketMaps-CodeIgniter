@@ -7,7 +7,7 @@
 
     <div id="infoMessage"><?php echo $message;?></div>
 
-    <?php echo form_open("user/register");?>
+    <?php echo form_open("register");?>
 
     <?php echo form_input($first_name, '', "class='input'");?>
     <?php echo form_input($last_name, '', "class='input'");?>

@@ -3,7 +3,12 @@
 class User extends MY_Controller {
     const MODEL = 'Ion_auth_model';
     
-    public $public_methods = array('login', 'register', 'register_confirm');
+    public $public_methods = array(
+        'login',
+        'register',
+        'register_confirm',
+        'activate',
+    );
     
     function __construct() {
         parent::__construct();
@@ -87,7 +92,7 @@ class User extends MY_Controller {
                 'company'    => $this->input->post('company'),
             );
         }
-        if ($validated == true && $this->ion_auth->register($username, $password, $email, $additional_data)) {
+        if ($validated === true && $this->ion_auth->register($username, $password, $email, $additional_data)) {
             //check to see if we are creating the user
             //redirect them back to the admin page
             $this->session->set_flashdata('message', $this->ion_auth->messages());
@@ -146,5 +151,26 @@ class User extends MY_Controller {
         $this->data['body_class'] = "register_confirm";
         $this->data['content'] = $this->load->view('user/register_confirm', $this->data, true);
         $this->render($this->data);
+    }
+
+	//activate the user
+	function activate($id, $code=false) {
+        if ($code !== false) {
+            $activation = $this->ion_auth->activate($id, $code);
+        } else if ($this->ion_auth->is_admin()) {
+            $activation = $this->ion_auth->activate($id);
+        }
+
+        if ($activation) {
+            //redirect them to the auth page
+            $this->session->set_flashdata('message', $this->ion_auth->messages());
+            redirect("login", 'refresh');
+        } else {
+            //redirect them to the forgot password page
+            $this->session->set_flashdata('message', $this->ion_auth->errors());
+            redirect("login", 'refresh');
+            //TODO re-enable this when forgot_password has been implemented
+            //redirect("auth/forgot_password", 'refresh');
+        }
     }
 }
