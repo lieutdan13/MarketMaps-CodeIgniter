@@ -11,6 +11,7 @@ class MY_Model extends CI_Model {
                 show_error("Undefined " . get_class($this) . "::ID_FIELD");
             }
         }
+        $this->load->helper('string');
         $this->load->database();
     }
     
@@ -21,6 +22,22 @@ class MY_Model extends CI_Model {
         }
 	$query = $this->db->get_where($this::TABLE, array($this::ID_FIELD => $Id));
         return $query->row_array();
+    }
+
+    /**
+     * Generates a unique hashed id for a database field
+     * @param mixed $var
+     * @param boolean $exit
+     */
+    public function get_unique_hash($table, $field, $len = 6) {
+        $hash_id = strtolower(random_string('alnum', $len));
+        $query = $this->db->get_where($table, array("{$table}.{$field}='{$hash_id}'"));
+        $result = $query->row_array();
+        if (count($result)) {
+            return $this->get_unique_hash($table, $field, $len);
+        } else {
+            return $hash_id;
+        }
     }
 }
 ?>
