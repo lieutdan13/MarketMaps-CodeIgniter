@@ -54,7 +54,7 @@ class User extends MY_Controller {
                 'id' => 'identity',
                 'type' => 'text',
                 'value' => $this->form_validation->set_value('identity'),
-                'placeholder' => 'Email',
+                'placeholder' => 'Username',
             );
             $this->data['password'] = array('name' => 'password',
                 'id' => 'password',
