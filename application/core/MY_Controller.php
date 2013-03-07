@@ -15,7 +15,6 @@ class MY_Controller extends CI_Controller {
     private $the_user;
 
     public function __construct() {
-        global $RTR;
         parent::__construct();
         if (get_class() != get_class($this)) {
             if (!defined(get_class($this) . '::MODEL')) {
@@ -26,7 +25,7 @@ class MY_Controller extends CI_Controller {
 
         $logged_in = $this->ion_auth->logged_in();
         if (!$logged_in) {
-            if (!in_array($RTR->method, $this->public_methods)) {
+            if (!in_array($this->router->method, $this->public_methods)) {
                 // send back to the login
                 redirect('login');
             }
