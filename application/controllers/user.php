@@ -111,7 +111,8 @@ class User extends MY_Controller {
             redirect("user/register_confirm", 'refresh');
         } else {
             //the user is not regitering in so display the register page
-            $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+            $this->data['error'] = validation_errors();
+            $this->data['message'] = $this->session->flashdata('message');
 
             $this->data['first_name'] = array('name' => 'first_name',
                 'id' => 'first_name',
@@ -179,7 +180,7 @@ class User extends MY_Controller {
             redirect("login", 'refresh');
         } else {
             //redirect them to the forgot password page
-            $this->session->set_flashdata('message', $this->ion_auth->errors());
+            $this->session->set_flashdata('error', $this->ion_auth->errors());
             redirect("login", 'refresh');
             //TODO re-enable this when forgot_password has been implemented
             //redirect("auth/forgot_password", 'refresh');
