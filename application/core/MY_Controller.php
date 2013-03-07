@@ -12,7 +12,7 @@ class MY_Controller extends CI_Controller {
     public $public_methods = array();
     
     public $data = array();
-    private $user;
+    private $the_user;
 
     public function __construct() {
         global $RTR;
@@ -32,12 +32,12 @@ class MY_Controller extends CI_Controller {
             }
         }
         // get the user object
-        $this->data['user'] = $this->ion_auth->user()->row();
+        $this->data['the_user'] = $this->ion_auth->user()->row();
         $this->data['logged_in'] = $logged_in;
         // put the user object in class wide property
-        $this->user = $this->data['user'];
+        $this->the_user = $this->data['the_user'];
 
-        // load $user in all displayed views automatically
+        // load $the_user in all displayed views automatically
         $this->load->vars($this->data);
     }
 

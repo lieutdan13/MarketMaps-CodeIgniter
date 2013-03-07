@@ -27,7 +27,7 @@ input, textarea, select {
     input, textarea, select { padding: 4px; }
 }
 
-.js label { position: absolute; }
+/*js label { position: absolute; }*/
 
 #body_header {
     width: 100%;
@@ -83,6 +83,11 @@ input, textarea, select {
 }
 
 #infoMessage {
+    font-size: medium;
+    color: blue;
+}
+
+#errorMessage {
     font-size: medium;
     color: red;
 }
@@ -221,4 +226,31 @@ body.login #header #auth_links {
     -webkit-border-radius: 20px; 
     -moz-border-radius: 20px;
     border-radius: 20px;
+}
+
+#user_view #left_side {
+    width: 30%;
+    position: relative;
+}
+
+#user_view .name {
+    font-size: 16pt;
+    font-weight: bold;
+    color: #666666;
+}
+
+#user_view .username {
+    font-size: 12pt;
+    color: #666666;
+}
+
+#user_view .created_on,
+#user_view .last_login {
+    font-size: 10pt;
+}
+
+#user_view #editBtnWrap {
+    position: absolute;
+    top: 0;
+    right: 0;
 }

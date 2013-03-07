@@ -17,7 +17,23 @@ class User extends MY_Controller {
         $this->max_pass_length = $this->config->item('max_password_length', 'ion_auth');
     }
 
-    public function index() {
+    public function index($identity = NULL) {
+        $identity_field = $this->config->item('identity', 'ion_auth');
+        if ($identity === NULL) {
+            $identity = $this->session->userdata($identity_field);
+        }
+        $this->data['user'] = $this->ion_auth->select('*')
+                                   ->where($identity_field, $identity)
+                                   ->users()
+                                   ->row();
+        if (empty($this->data['user'])) {
+            $this->data['error'] = $this->ion_auth->lang->line('find_unsuccessful');
+        } else {
+            $this->data['error'] = "";
+        }
+        $this->data['can_edit'] =
+                $this->data['the_user']->id == $this->data['user']->id ||
+                $this->ion_auth->is_admin();
         $this->data['pageTitle'] = "User View";
         $this->data['content'] = $this->load->view('user/view', $this->data, true);
         $this->render($this->data);
@@ -70,10 +86,6 @@ class User extends MY_Controller {
         // log current user out and send back to public root
         $this->ion_auth->logout();
         redirect('/');
-    }
-    
-    public function view() {
-        redirect('user/');
     }
 
     public function register() {
