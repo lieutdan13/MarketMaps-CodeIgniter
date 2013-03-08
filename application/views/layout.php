@@ -4,7 +4,7 @@
         <meta charset='UTF-8'>
         <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
         <meta name="viewport" content="width=device-width" />
-        <title><?php echo $pageTitle?></title>
+        <title><?php echo $title?></title>
         <!--[if IE 9]>
         <style type="text/css"> .gradient { filter: none;} </style>
         <![endif]-->

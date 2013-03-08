@@ -5,7 +5,7 @@ class Welcome extends MY_Controller {
     
     public function index() {
         $this->data['content'] = $this->load->view('welcome_message', NULL, true);
-        $this->data['pageTitle'] = 'Welcome to Market Maps';
+        $this->data['title'] = 'Welcome to Market Maps';
         $this->render($this->data);
     }
 }

@@ -39,7 +39,7 @@ class User extends MY_Controller {
                 'onclick' => "location.href='" . site_url("user/edit/" . ($this->ion_auth->is_admin() ? $this->data['user']->username : '')) . "'"
             );
         }
-        $this->data['pageTitle'] = "User View";
+        $this->data['title'] = "User View &mdash; {$identity}";
         $this->data['content'] = $this->load->view('user/view', $this->data, true);
         $this->render($this->data);
 	}
@@ -49,7 +49,7 @@ class User extends MY_Controller {
         if ($this->ion_auth->logged_in()) {
             redirect('/', 'refresh');
         }
-        $this->data['pageTitle'] = "Login";
+        $this->data['title'] = "Login";
         $this->data['body_class'] = "login";
 
         if ($this->form_validation->run() == true) {
@@ -94,7 +94,7 @@ class User extends MY_Controller {
     }
 
     public function register() {
-        $this->data['pageTitle'] = "Register";
+        $this->data['title'] = "Register";
         $this->data['body_class'] = "register";
 
         $validated = $this->form_validation->run('register');
@@ -165,7 +165,7 @@ class User extends MY_Controller {
     }
 
     function register_confirm() {
-        $this->data['pageTitle'] = "Registration Confirmation";
+        $this->data['title'] = "Registration Confirmation";
         $this->data['body_class'] = "register_confirm";
         $this->data['content'] = $this->load->view('user/register_confirm', $this->data, true);
         $this->render($this->data);
@@ -205,7 +205,6 @@ class User extends MY_Controller {
 
 	//edit a user
 	function edit($identity = NULL) {
-		$this->data['pageTitle'] = "Edit User";
         $identity_field = $this->config->item('identity', 'ion_auth');
         if ($identity === NULL) {
             $identity = $this->session->userdata($identity_field);
@@ -263,6 +262,7 @@ class User extends MY_Controller {
 			}
 		}
 
+		$this->data['title'] = "Edit User &mdash; {$identity}";
 		//display the edit user form
 		$this->data['csrf'] = $this->_get_csrf_nonce();
 

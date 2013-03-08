@@ -82,7 +82,7 @@ class MY_Controller extends CI_Controller {
         $content = $this->load->view($this->get_class('lower') . '/index', $data, true);
         $this->render(array(
             'content' => $content,
-            'pageTitle' => 'List ' . $this->get_class('plural')
+            'title' => 'List ' . $this->get_class('plural')
         ));
     }
 
@@ -96,7 +96,7 @@ class MY_Controller extends CI_Controller {
         $content = $this->load->view($this->get_class('lower') . '/view', $data, true);
         $this->render(array(
             'content' => $content,
-            'pageTitle' => $data[$this->get_class('lower') . '_item']['Name']
+            'title' => $data[$this->get_class('lower') . '_item']['Name']
         ));
     }
 
