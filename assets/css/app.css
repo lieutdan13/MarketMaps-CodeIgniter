@@ -22,6 +22,11 @@ input, textarea, select {
     font: inherit;
 }
 
+h2 {
+    font-family: Oswald;
+    font-size: 18pt;
+}
+
 /* Hack to remove Safari's extra padding. */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     input, textarea, select { padding: 4px; }
@@ -159,10 +164,10 @@ body.login #header #auth_links {
     display: none;
 }
 
-#login,
-#register {
+.middle {
     width: 350px;
     margin: 20px auto;
+    position: relative;
 }
 
 #login .header,
@@ -194,20 +199,16 @@ body.login #header #auth_links {
     right: 0px;
 }
 
-#login input[type='text'],
-#login input[type='password'],
-#register input[type='text'],
-#register input[type='password'] {
-    display: block;
+.middle input[type='text'],
+.middle input[type='password'],
+.middle .input {
     display: block;
     width: 100%;
     box-sizing: border-box;
+    margin-top: 15px;
 }
 
-#login .input,
-#login .forgot,
-#register .input,
-#register .forgot {
+.middle .forgot {
     margin-top: 15px;
 }
 
@@ -228,11 +229,6 @@ body.login #header #auth_links {
     border-radius: 20px;
 }
 
-#user_view #left_side {
-    width: 30%;
-    position: relative;
-}
-
 #user_view .name {
     font-size: 16pt;
     font-weight: bold;
@@ -245,7 +241,9 @@ body.login #header #auth_links {
 }
 
 #user_view .created_on,
-#user_view .last_login {
+#user_view .last_login,
+#user_edit .created_on,
+#user_edit .last_login {
     font-size: 10pt;
 }
 
@@ -253,4 +251,19 @@ body.login #header #auth_links {
     position: absolute;
     top: 0;
     right: 0;
+}
+
+#user_edit .buttons {
+    text-align: right;
+}
+
+input#phone1,
+input#phone2 {
+    width: 25%;
+    display: inline;
+}
+
+input#phone3 {
+    width: 35%;
+    display: inline;
 }

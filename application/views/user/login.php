@@ -1,13 +1,14 @@
-<div id="login">
+<div id="login" class="middle">
     <div class="header">
         <span class="loginText">LOGIN HERE</span>
         <span class="orText">&mdash;<span>OR</span>&mdash;</span>
         <button class="button orange" id="registerBtn">Register</button>
     </div>
 
+    <div id="errorMessage"><?php echo $error;?></div>
     <div id="infoMessage"><?php echo $message;?></div>
 
-    <?php echo form_open("user/login");?>
+    <?php echo form_open("login");?>
 
     <?php echo form_input($identity, '', "class='input'");?>
     <?php echo form_input($password, '', "class='input'");?>

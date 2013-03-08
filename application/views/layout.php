@@ -34,6 +34,9 @@
                     <?php if ($logged_in) { ?>
                          <span class="welcome">Welcome <?=$the_user->username?>!</span>
                          <a href="<?php echo base_url() . "logout"?>">Logout</a>
+                         <div>
+                             <a href="<?php echo base_url() . "user/edit/"?>">Account</a>
+                         </div>
                     <?php } else { ?>
                          <a href="<?php echo base_url() . "login"?>">Login</a>
                     <?php } ?>

@@ -45,9 +45,13 @@ $route['login'] = 'user/login';
 $route['logout'] = 'user/logout';
 $route['register'] = 'user/register';
 
+$route['user/activate/(:any)/(:any)'] = 'user/activate/$1/$2';
 $route['user/login'] = 'user/login';
 $route['user/logout'] = 'user/logout';
 $route['user/register'] = 'user/register';
+$route['user/register_confirm'] = 'user/register_confirm';
+$route['user/edit'] = 'user/edit';
+$route['user/edit/(:any)'] = 'user/edit/$1';
 $route['user/(:any)'] = 'user/index/$1';
 
 $route['venue/(:any)'] = 'venue/view/$1';

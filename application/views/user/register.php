@@ -1,10 +1,10 @@
-<div id="register">
+<div id="register" class="middle">
     <div class="header">
         <span class="registerText">REGISTER HERE</span>
         <span class="orText">&mdash;<span>OR</span>&mdash;</span>
         <button class="button orange" id="loginBtn">Login</button>
     </div>
-
+    <div id="errorMessage"><?php echo $error;?></div>
     <div id="infoMessage"><?php echo $message;?></div>
 
     <?php echo form_open("register");?>
