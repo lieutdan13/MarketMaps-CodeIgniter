@@ -7,7 +7,8 @@ if (!function_exists('debugOut')) {
      * @param mixed $var
      * @param boolean $exit
      */
-    function debugOut($var, $exit=true) {
+    function debugOut($var = NULL, $exit=true) {
+        if ($var === NULL) { $var = $GLOBALS; }
         echo "<pre>" . print_r($var, true) . "</pre>";
         if ($exit) { exit; }
     }
