@@ -3,7 +3,6 @@
 application/third_party/asset-helper
 application/third_party/ion-auth
 
-application/config/email.php
 
 application/cache/*
 !application/cache/index.html
