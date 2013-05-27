@@ -45,8 +45,8 @@
 | the active record class
 */
 
-if (is_file("database.local.php")) {
-    include("database.local.php");
+if (is_file(APPPATH . "config/database.local.php")) {
+    include(APPPATH . "config/database.local.php");
 } else {
     $active_group = 'default';
     $active_record = TRUE;
